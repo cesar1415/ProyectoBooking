@@ -53,9 +53,11 @@
                                     </table>
                                 </div>
                             </div>
+                            {{-- PAGINACION APPSERVICESPROVIDER --}}
                             <div class="card-footer mr-auto">
                                 {{ $users->links() }}
                             </div>
+                            {{-- END PAGINACION --}}
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
             <div class="card-title">Usuarios</div>
             <p class="card-category">Vista detallada del usuario {{ $user->name }}</p>
           </div>
-          <!--body-->
+          {{-- BODY --}}
           <div class="card-body">
             @if (session('success'))
             <div class="alert alert-success" role="success">
@@ -23,7 +23,7 @@
                     <p class="card-text">
                       <div class="author">
                         <a href="#">
-                          <img src="{{ asset('/img/default-avatar.png') }}" alt="image" class="avatar">
+                          <img src="{{ asset('/img/avatar.jpg') }}" alt="image" class="avatar">
                           <h5 class="title mt-3">{{ $user->name }}</h5>
                         </a>
                         <p class="description">
@@ -38,7 +38,9 @@
                     </div>
                   </div>
                 </div>
-              </div><!--end card user-->
+              </div>
+            {{-- END CARD USER --}}
+
 
               <!--Start third-->
               <div class="col-md-6">
@@ -48,8 +50,7 @@
                       <tbody>
                         <tr>
                           <th>ID</th>
-                          <td>{{ $user->id }}
-                          </td>
+                          <td>{{ $user->id }}</td>
                         </tr>
                         <tr>
                           <th>Name</th>
