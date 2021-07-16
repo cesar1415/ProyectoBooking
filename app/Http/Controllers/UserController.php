@@ -17,6 +17,7 @@ class UserController extends Controller
     {
         return view('users.create');
     }
+
     public function store(Request $request)
     {
         User::create($request->only('name', 'username', 'email')
@@ -24,5 +25,11 @@ class UserController extends Controller
         'password' => bcrypt($request->input('password')),
     ]);
         return redirect()->route('users.index')->with('success', 'Usuario creado correctamente');
+    }
+
+    public function show(User $user)
+    {
+        // $user = User::findOrFail($id);
+        return view('users.show', compact('user'));
     }
 }

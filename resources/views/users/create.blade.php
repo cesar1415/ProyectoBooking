@@ -31,6 +31,12 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label for="text" class="col-sm-2 col-form-label">Descripcion</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="text" placeholder="Descripcion" autofocus>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
                                 <div class="col-sm-7">
                                     <input type="password" class="form-control" name="password" placeholder="Contraseña" autofocus>
