@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\EditRequest;
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
+use App\Http\Requests\UserCreateRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -18,14 +21,14 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'username' => 'required',
+        //     'email' => 'required|unique:users|email',
+        //     'password' => 'required',
+        // ]);
         $user = User::create($request->only('name', 'username', 'email')
     +[
         'password' => bcrypt($request->input('password')),
@@ -44,7 +47,7 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(EditRequest $request, User $user)
     {
         // $user=User::findOrFail($id);
         $data = $request->only('name', 'username', 'email');

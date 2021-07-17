@@ -16,25 +16,37 @@
                             <div class="row">
                                 <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" name="name" value="{{$user->name}}" autofocus>
+                                    <input type="text" class="form-control" name="name" value="{{ old ('name', $user->name) }}" autofocus>
+                                    @if ($errors->has('name'))
+                                    <span class="error text-danger" for="input-name">{{$errors->first('name')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="username" class="col-sm-2 col-form-label">Nombre de usuario</label>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" name="username" value="{{$user->username}}" autofocus>
+                                    <input type="text" class="form-control" name="username" value="{{ old ('username', $user->username) }}" autofocus>
+                                    @if ($errors->has('username'))
+                                    <span class="error text-danger" for="input-username">{{$errors->first('username')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="email" class="col-sm-2 col-form-label">Correo</label>
                                 <div class="col-sm-7">
-                                    <input type="email" class="form-control" name="email" value="{{$user->email}}" autofocus>
+                                    <input type="email" class="form-control" name="email" value="{{ old ('email', $user->email) }}" autofocus>
+                                    @if ($errors->has('email'))
+                                    <span class="error text-danger" for="input-email">{{$errors->first('email')}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
                                 <div class="col-sm-7">
                                     <input type="password" class="form-control" name="password" placeholder="Ingrese lacontraseña solo en caso de modificarla" autofocus>
+                                    @if ($errors->has('password'))
+                                    <span class="error text-danger" for="input-password">{{$errors->first('password')}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
