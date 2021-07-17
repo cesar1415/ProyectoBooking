@@ -1,4 +1,4 @@
-@extends('layouts.main', ['activePage' => 'users', 'titlePage' => 'Usuarios'])
+@extends('layouts.main', ['activePage' => 'permissions', 'titlePage' => 'Permisos'])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -8,18 +8,18 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">Usuarios</h4>
-                                <p class="card-category">Usuarios Registrados</p>
+                                <h4 class="card-title">Permisos</h4>
+                                <p class="card-category">Permisos Registrados</p>
                             </div>
                             <div class="card-body">
-                                    @if (session('success'))
+                                @if (session('success'))
                                     <div class="alert alert-success" role="success">
                                         {{session('success')}}
                                     </div>
                                     @endif
                                 <div class="row">
                                     <div class="col-12 text-right">
-                                        <a href="{{route('users.create')}}" class="btn btn-sm btn-primary">Añadir usuario</a>
+                                        <a href="{{route('permissions.create')}}" class="btn btn-sm btn-primary">Añadir permiso</a>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -27,41 +27,44 @@
                                         <thead class="text-primary">
                                             <th>ID</th>
                                             <th>Nombre</th>
-                                            <th>Correo</th>
-                                            <th>Usuario</th>
+                                            <th>Guard</th>
                                             <th>Fecha de creacion</th>
                                             <th class="text-right">Acciones</th>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $user)
+                                            @forelse ($permissions as $permission)
                                             <tr>
-                                                <td>{{$user->id}}</td>
-                                                <td>{{$user->name}}</td>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->username}}</td>
-                                                <td>{{$user->created_at}}</td>
+                                                <td>{{$permission->id}}</td>
+                                                <td>{{$permission->name}}</td>
+                                                <td>{{$permission->guard_name}}</td>
+                                                <td>{{$permission->created_at}}</td>
                                                 <td class="td-actions text-right">
-                                                    <a href="{{route('users.show', $user->id)}}" class="btn btn-info"><i class="material-icons">person</i></a>
-                                                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning"><i class="material-icons">edit</i></a>
+                                                    <a href="{{route('permissions.show', $permission->id)}}" class="btn btn-info"><i class="material-icons">person</i></a>
+                                                    <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-warning"><i class="material-icons">edit</i></a>
+
                                                     {{-- <a href="{{route('users.delete', $user->id)}}" class="btn btn-danger"><i class="material-icons">close</i></a> --}}
-                                                <form action="{{ route('users.delete', $user->id) }}" method="get"
-                                                    onsubmit="return confirm('Estas seguro de eliminar este usuario ?')" style="display: inline-block;">
+                                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
+                                                    onsubmit="return confirm('Estas seguro de eliminar este permiso ?')" style="display: inline-block;">
                                                     @csrf
-                                                    @method('GET')
+                                                    @method('DELETE')
                                                     <button type="submit" rel="tooltip" class="btn btn-danger">
                                                       <i class="material-icons">close</i>
                                                     </button>
                                                   </form>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="2">Sin registros.</td>
+                                              </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             {{-- PAGINACION APPSERVICESPROVIDER --}}
                             <div class="card-footer mr-auto">
-                                {{ $users->links() }}
+                                {{ $permissions->links() }}
                             </div>
                             {{-- END PAGINACION --}}
                         </div>
