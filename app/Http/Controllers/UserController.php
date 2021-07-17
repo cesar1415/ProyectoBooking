@@ -20,11 +20,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->only('name', 'username', 'email')
+        $user = User::create($request->only('name', 'username', 'email')
     +[
         'password' => bcrypt($request->input('password')),
     ]);
-        return redirect()->route('users.index')->with('success', 'Usuario creado correctamente');
+        return redirect()->route('users.show', $user->id)->with('success', 'Usuario creado correctamente');
     }
 
     public function show(User $user)
@@ -54,6 +54,12 @@ class UserController extends Controller
         //     $data['password']=bcrypt($request->password);
         // }
         $user->update($data);
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
+        return redirect()->route('users.show', $user->id)->with('success', 'Usuario actualizado correctamente');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return back()->with('success', 'Usuario eliminado correctamente.');
     }
 }

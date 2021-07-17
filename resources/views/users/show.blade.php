@@ -79,7 +79,7 @@
             <div class="card-footer">
                 <div class="button-container text-right">
                   <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary mr-3"> Volver </a>
-                  <a href="#" class="btn btn-sm btn-facebook"> Editar </a>
+                  <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-facebook"> Editar </a>
                 </div>
               </div>
           </div>
