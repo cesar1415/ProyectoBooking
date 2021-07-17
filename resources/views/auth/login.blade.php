@@ -50,7 +50,7 @@
                       <i class="material-icons">face</i>
                     </span>
                   </div>
-                  <input type="text" name="username" class="form-control" placeholder="{{ __('Username or Email...') }}" value="{{ old('username', null) }}" required autocomplete="username"  autofocus>
+                  <input type="text" name="username" class="form-control" placeholder="{{ __('Username or Email...') }}"  required autocomplete="username"  autofocus>
                 </div>
                 @if ($errors->has('username'))
                   <div id="username-error" class="error text-danger pl-3" for="username" style="display: block;">
@@ -75,7 +75,7 @@
             </div>
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuérdame') }}
+                <input class="form-check-input" type="checkbox"  ? 'checked' : '' }}> {{ __('Recuérdame') }}
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
